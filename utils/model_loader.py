@@ -10,7 +10,7 @@ from typing import Optional, Dict, Any
 try:
     import torch.backends.mps as mps
     MPS_AVAILABLE = torch.backends.mps.is_available()
-except:
+except (ImportError, AttributeError):
     MPS_AVAILABLE = False
 
 from app.config import MODEL_DIR, CACHE_DIR, DEVICE

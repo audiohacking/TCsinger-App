@@ -97,16 +97,16 @@ if __name__ == "__main__":
     all_passed = True
     
     print("\n1. Testing imports...")
-    all_passed &= test_imports()
+    all_passed = all_passed and test_imports()
     
     print("\n2. Testing configuration...")
-    all_passed &= test_config()
+    all_passed = all_passed and test_config()
     
     print("\n3. Testing audio utilities...")
-    all_passed &= test_audio_utils()
+    all_passed = all_passed and test_audio_utils()
     
     print("\n4. Testing model loader...")
-    all_passed &= test_model_loader()
+    all_passed = all_passed and test_model_loader()
     
     print("\n" + "=" * 50)
     if all_passed:

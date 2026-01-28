@@ -156,7 +156,7 @@ def note_to_midi(note_name: str) -> int:
     Convert note name to MIDI number
     
     Args:
-        note_name: Note name (e.g., "C4", "D#5")
+        note_name: Note name (e.g., "C4", "D#5", "Bb3")
         
     Returns:
         MIDI number
@@ -171,17 +171,25 @@ def note_to_midi(note_name: str) -> int:
     if len(note_name) < 2:
         raise ValueError(f"Invalid note name: {note_name}")
     
-    if '#' in note_name or 'b' in note_name:
-        note = note_name[:-1]
+    # Extract octave (last character)
+    try:
         octave = int(note_name[-1])
-    else:
-        note = note_name[:-1]
-        octave = int(note_name[-1])
+    except ValueError:
+        raise ValueError(f"Invalid octave in note name: {note_name}")
     
-    # Calculate MIDI number
-    midi = note_map.get(note, 0) + (octave + 1) * 12
+    # Extract note (everything before octave)
+    note = note_name[:-1]
+    
+    # Validate note
+    if note not in note_map:
+        raise ValueError(f"Invalid note: {note}")
+    
+    # Calculate MIDI number (C4 = middle C = 60)
+    # Formula: note_value + (octave * 12) + 12
+    midi = note_map[note] + (octave + 1) * 12
     
     return midi
+
 
 
 def generate_silence(duration: float, sr: int = 48000) -> np.ndarray:
