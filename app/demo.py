@@ -136,10 +136,7 @@ class TCSinger2DemoApp:
     def create_ui(self):
         """Create and configure the Gradio UI"""
         
-        with gr.Blocks(
-            title="TCSinger2 Demo",
-            theme=gr.themes.Soft()
-        ) as demo:
+        with gr.Blocks(title="TCSinger2 Demo") as demo:
             
             gr.Markdown("""
             # 🎵 TCSinger2 Demo App
@@ -279,6 +276,9 @@ class TCSinger2DemoApp:
     def launch(self, **kwargs):
         """Launch the Gradio application"""
         demo = self.create_ui()
+        # Set theme if not provided
+        if 'theme' not in kwargs:
+            kwargs['theme'] = gr.themes.Soft()
         demo.launch(**kwargs)
 
 
