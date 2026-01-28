@@ -1,0 +1,72 @@
+# TCSinger2 Demo App Configuration Example
+# Copy this file to config.yaml and modify as needed
+
+# Model Configuration
+model:
+  # Path to pretrained model checkpoint
+  checkpoint_path: null  # e.g., "models/tcsinger2.pt"
+  
+  # HuggingFace model ID (alternative to checkpoint_path)
+  model_id: null  # e.g., "username/tcsinger2-model"
+  
+  # Device configuration
+  device: "auto"  # Options: "auto", "mps", "cuda", "cpu"
+  
+  # Model precision
+  dtype: "float32"  # Options: "float32", "float16", "bfloat16"
+
+# Audio Configuration
+audio:
+  # Sample rate for processing
+  sample_rate: 48000
+  
+  # Maximum audio length in seconds
+  max_length: 30
+  
+  # Audio normalization
+  normalize: true
+  target_db: -20.0
+
+# Synthesis Configuration
+synthesis:
+  # Default CFG scale
+  default_cfg_scale: 3.5
+  
+  # Minimum/Maximum CFG scale
+  min_cfg_scale: 1.0
+  max_cfg_scale: 10.0
+  
+  # Number of inference steps
+  num_steps: 50
+  
+  # Random seed for reproducibility
+  seed: null  # Set to integer for reproducible results
+
+# UI Configuration
+ui:
+  # Server settings
+  server_name: "127.0.0.1"
+  server_port: 7860
+  
+  # Enable sharing
+  share: false
+  
+  # Theme
+  theme: "soft"  # Options: "soft", "default", "monochrome"
+  
+  # Max concurrent users
+  max_queue_size: 10
+
+# Advanced Settings
+advanced:
+  # Enable debug mode
+  debug: false
+  
+  # Cache directory
+  cache_dir: "models/cache"
+  
+  # Temporary directory
+  temp_dir: "tmp"
+  
+  # Enable GPU memory optimization
+  low_memory_mode: false
